@@ -26,3 +26,15 @@ test('parses arguments with shell standards', () => {
   expect(parse(`${prelude} this is four args`).args.length).toBe(4);
   expect(parse(`${prelude} "this is one arg"`).args.length).toBe(1);
 });
+
+test('parses arguments without shell standards', () => {
+  const prelude = '!command';
+  const args = ["Don't try to parse this", 'It will end poorly'];
+
+  const argsString = args.join(' ');
+
+  const result = parse(`${prelude} ${argsString}`);
+
+  expect(result.args.length).toBe(9);
+  expect(result.args[0]).toBe("Don't");
+});

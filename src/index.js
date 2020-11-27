@@ -5,7 +5,14 @@ const parse = (input = '', { prefix = '!' } = {}) => {
     return null;
   }
 
-  const parsed = split(input);
+  let parsed = [];
+
+  try {
+    parsed = split(input);
+  } catch {
+    // Try our best if we can't get it
+    parsed = input.split(' ');
+  }
 
   if (!parsed.length) {
     return null;

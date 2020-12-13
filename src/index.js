@@ -20,7 +20,7 @@ const parse = (input = '', { prefix = '!' } = {}) => {
 
   const [command, ...args] = parsed;
 
-  const argsString = input.replace(`${command} `, '');
+  const argsString = input.replace(`${command}`, '').replace(/^\s?/, '');
 
   return { command: command.slice(1).toLowerCase(), args, argsString, message: input };
 };
